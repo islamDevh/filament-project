@@ -2,7 +2,6 @@
 
 namespace App\Providers\Filament;
 
-use Filament\Enums\ThemeMode;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -20,24 +19,25 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
-class AdminPanelProvider extends PanelProvider
+class BorrowerPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
+        // dd(get_class_methods($panel)); // show all available methods
+
         return $panel
-            ->default()
-            ->id('admin')
-            ->path('admin')
-            ->login()
+            ->id('borrower')
+            ->path('borrower')
             ->colors([
                 'primary' => Color::Amber,
             ])
-            ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
-            ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
+            ->login()
+            ->discoverResources(in: app_path('Filament/Borrower/Resources'), for: 'App\Filament\Borrower\Resources')
+            ->discoverPages(in: app_path('Filament/Borrower/Pages'), for: 'App\Filament\Borrower\Pages')
             ->pages([
                 Dashboard::class,
             ])
-            ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
+            ->discoverWidgets(in: app_path('Filament/Borrower/Widgets'), for: 'App\Filament\Borrower\Widgets')
             ->widgets([
                 AccountWidget::class,
                 FilamentInfoWidget::class,
@@ -55,6 +55,23 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+            ->profile()
+            ->simpleProfilePage()
+            ->spa()
+            ->spaUrlExceptions([
+                'admin/profile',
+            ])
+            ->unsavedChangesAlerts()
+            ->databaseTransactions()
+            ->brandName('Filament Admin Panel')
+            ->brandLogo(asset('images/image.jpg'))  // but it do override on the brand name, if you want both use ->brandLogo(function () { return view(...); })
+            ->brandLogoHeight('10px')
+            ->favicon(asset('favicon.ico'))
+            // ->darkMode(false) // dont show mode toggle switch
+            // ->defaultThemeMode(ThemeMode::class::Dark) // light, dark, system (default)
+            ->darkModeBrandLogo(asset('images/image.jpg'))
+            ->font('poppins') // available fonts: 'inter' (default), 'poppins', 'roboto', 'open-sans', 'lato' ...etc
+        ;
     }
 }
