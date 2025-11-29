@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use Filament\Enums\ThemeMode;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -68,10 +69,16 @@ class BorrowerPanelProvider extends PanelProvider
             ->brandLogo(asset('images/image.jpg'))  // but it do override on the brand name, if you want both use ->brandLogo(function () { return view(...); })
             ->brandLogoHeight('10px')
             ->favicon(asset('favicon.ico'))
-            // ->darkMode(false) // dont show mode toggle switch
-            // ->defaultThemeMode(ThemeMode::class::Dark) // light, dark, system (default)
+            ->darkMode(false) // dont show mode toggle switch
+            ->defaultThemeMode(ThemeMode::class::Dark) // light, dark, system (default)
             ->darkModeBrandLogo(asset('images/image.jpg'))
-            ->font('poppins') // available fonts: 'inter' (default), 'poppins', 'roboto', 'open-sans', 'lato' ...etc
+            ->font('poppins') // available fonts google
+            ->sidebarWidth('500px')
+            ->sidebarCollapsibleOnDesktop()
+            ->sidebarFullyCollapsibleOnDesktop()
+            ->navigation(false) // disable navigation
+            // ->topNavigation()
+            // ->topbar(false)
         ;
     }
 }
