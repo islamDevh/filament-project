@@ -5,16 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Book extends Model
+class Borrower extends Model
 {
-    /** @use HasFactory<\Database\Factories\BookFactory> */
+    /** @use HasFactory<\Database\Factories\BorrowerFactory> */
     use HasFactory;
     protected $guarded = [];
-
-    public function author()
-    {
-        return $this->belongsTo(Author::class);
-    }
 
     public function borrowings()
     {
