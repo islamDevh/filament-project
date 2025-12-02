@@ -19,28 +19,13 @@ use Filament\Tables\Table;
 class UserResource extends Resource
 {
     protected static ?string $model = User::class;
+    // protected static ?string $slug  = 'hamada'; // custom slug url 
 
   
   
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
   
-  
-    public static function getNavigationBadge(): ?string
-    {
-        return 'new'; // you can use this
-        // return User::count(); // or this
-    }
-
-
-    
-
-    public static function getNavigationBadgeColor(): string | array | null
-    {
-        return 'success';
-    }
-
-
     
 
     public static function form(Schema $schema): Schema
