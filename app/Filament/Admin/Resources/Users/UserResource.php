@@ -15,18 +15,19 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class UserResource extends Resource
 {
     protected static ?string $model = User::class;
-    // protected static ?string $slug  = 'hamada'; // custom slug url 
 
-  
-  
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-  
-    
+
+    public static function getEloquentQuery(): Builder
+    {
+        return static::getModel()::query()->whereNotNull('email_verified_at'); // custom query
+    }
 
     public static function form(Schema $schema): Schema
     {
