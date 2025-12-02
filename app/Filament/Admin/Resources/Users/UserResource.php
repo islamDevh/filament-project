@@ -20,14 +20,28 @@ class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
+  
+  
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static ?string $recordTitleAttribute = 'name';
-    protected static ?string $modelLabel           = 'user';
-    protected static ?string $pluralModelLabel     = 'users plural';
-    protected static bool $hasTitleCaseModelLabel  = true;    // if you want first letter to be uppercase
+  
+  
+    public static function getNavigationBadge(): ?string
+    {
+        return 'new'; // you can use this
+        // return User::count(); // or this
+    }
+
+
     
 
+    public static function getNavigationBadgeColor(): string | array | null
+    {
+        return 'success';
+    }
+
+
+    
 
     public static function form(Schema $schema): Schema
     {
