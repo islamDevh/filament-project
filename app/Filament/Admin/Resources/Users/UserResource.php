@@ -23,12 +23,9 @@ class UserResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     protected static ?string $recordTitleAttribute = 'name';
-    protected static ?string $modelLabel           = 'custom userssssssss'; // you can use this to override the default model label
+    protected static ?string $modelLabel           = 'user';  
+    protected static ?string $pluralModelLabel     = 'users plural'; 
 
-    public static function getModelLabel(): string // or this
-    {
-        return 'custom userssssssss';
-    }
 
     public static function form(Schema $schema): Schema
     {
