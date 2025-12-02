@@ -23,8 +23,10 @@ class UserResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     protected static ?string $recordTitleAttribute = 'name';
-    protected static ?string $modelLabel           = 'user';  
-    protected static ?string $pluralModelLabel     = 'users plural'; 
+    protected static ?string $modelLabel           = 'user';
+    protected static ?string $pluralModelLabel     = 'users plural';
+    protected static bool $hasTitleCaseModelLabel  = true;    // if you want first letter to be uppercase
+    
 
 
     public static function form(Schema $schema): Schema
