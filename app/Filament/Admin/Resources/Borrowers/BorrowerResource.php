@@ -22,7 +22,7 @@ class BorrowerResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::UserPlus;
 
-    protected static ?string $recordTitleAttribute = 'name';
+    // protected static ?string $recordTitleAttribute = 'name';
 
     public static function form(Schema $schema): Schema
     {
