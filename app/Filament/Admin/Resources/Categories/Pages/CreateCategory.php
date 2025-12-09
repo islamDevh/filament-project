@@ -6,6 +6,8 @@ use App\Filament\Admin\Resources\Categories\CategoryResource;
 use App\Models\Category;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Database\Eloquent\Model;
+use Filament\Notifications\Notification;
+use Filament\Support\Icons\Heroicon;
 
 class CreateCategory extends CreateRecord
 {
@@ -31,4 +33,18 @@ class CreateCategory extends CreateRecord
     //     // return CategoryResource::getUrl('create'); // or this
     //     return $this->previousUrl ?? $this->getResource()::getUrl('index');
     // }
+
+    protected function getCreatedNotificationTitle(): ?string 
+    {
+        return 'تم التخزين بنجاح';
+    }
+
+    protected function getCreatedNotification(): ?Notification
+    {
+        return Notification::make()
+            ->success()
+            ->body('تم التخزين بنجاح')
+            ->title($this->getCreatedNotificationTitle() . ' ' . $this->record->name)
+            ->icon(Heroicon::AcademicCap);
+    }
 }
