@@ -34,17 +34,19 @@ class CreateCategory extends CreateRecord
     //     return $this->previousUrl ?? $this->getResource()::getUrl('index');
     // }
 
-    protected function getCreatedNotificationTitle(): ?string 
-    {
-        return 'تم التخزين بنجاح';
-    }
+    // protected function getCreatedNotificationTitle(): ?string
+    // {
+    //     return 'تم التخزين بنجاح';
+    // }
 
-    protected function getCreatedNotification(): ?Notification
-    {
-        return Notification::make()
-            ->success()
-            ->body('تم التخزين بنجاح')
-            ->title($this->getCreatedNotificationTitle() . ' ' . $this->record->name)
-            ->icon(Heroicon::AcademicCap);
-    }
+    // protected function getCreatedNotification(): ?Notification
+    // {
+    //     return Notification::make()
+    //         ->success()
+    //         ->body('تم التخزين بنجاح')
+    //         ->title($this->getCreatedNotificationTitle() . ' ' . $this->record->name)
+    //         ->icon(Heroicon::AcademicCap);
+    // }
+
+    protected static bool $canCreateAnother = false;
 }
